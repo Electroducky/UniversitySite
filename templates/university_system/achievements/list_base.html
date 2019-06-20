@@ -1,0 +1,100 @@
+{% extends 'university_system/menu.html' %}
+{% load custom_filters %}
+{% block title %}
+    <title>Achievements</title>
+{% endblock %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'university_system/auth.css' %}">
+{% block content %}
+    <h1 class="text-center mb-5 mt-5">{% block list_title %}
+    {% endblock %}</h1>
+    <div class="row justify-content-center align-items-center">
+        <div class="accordion w-100 bg-light" id="accordionExample">
+            {% for achievement in achievements %}
+                {% if achievement is not None %}
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h class="mb-0">
+                                {% block header_muted_text %}
+                                {% endblock %}
+                                <button class="btn btn-light collapsed" data-toggle="collapse"
+                                        data-target="#collapse{{ forloop.counter }}"
+                                        aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+
+                                    <div class="font-weight-bold">{{ achievement.title }}</div>
+                                </button>
+                                {% if auth_user.token|has_permission:'Scope.achievement, Crud.delete' %}
+                                    <button type="button" class="btn btn-light float-right" data-toggle="modal"
+                                            data-target="#modal{{ forloop.counter }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+
+                                    <div class="modal fade" id="modal{{ forloop.counter }}" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Removal of
+                                                        student</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this achievement?
+                                                </div>
+                                                <form class=""
+                                                      action="{% url "achievements-delete" id=achievement.doc_id %}"
+                                                      method="post">
+                                                    {% csrf_token %}
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-secondary"
+                                                           href="{% block cancel_url %}{% endblock %}"
+                                                           role="button">Cancel</a>
+
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if auth_user.token|has_permission:'Scope.achievement, Crud.update' %}
+                                    <a href="{% url 'achievements-update' id=achievement.doc_id %}"
+                                       class="btn btn-light float-right">
+                                        <i class="fas fa-pen"></i></a>
+                                {% endif %}
+                                {% block user_profile_button %}
+                                {% endblock %}
+                            </h>
+                        </div>
+
+                        <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#accordionExample">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ achievement.category }}</h5>
+                                <p class="card-text"> {{ achievement.description }}</p>
+                                {% if auth_user.token|has_permission:'Scope.student, Crud.read' %}
+                                    <a href="{% url "achievements-profile" id=achievement.doc_id %}"
+                                       class="btn btn-outline-dark">View </a>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer text-muted">Date: {{ achievement.date }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="pt-4">
+        <div class="row justify-content-center align-items-center">
+            <div class=" w-100 bg-light">
+                {% block create_button %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

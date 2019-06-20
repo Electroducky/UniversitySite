@@ -1,0 +1,13 @@
+{% extends "university_system/form_base.html" %}
+
+{% block title %}
+Department update
+{% endblock %}
+
+{% block form_title %}
+Department update
+{% endblock %}
+
+{% block form_url %}
+ {% url "departments-update" id=id%}
+{% endblock %}

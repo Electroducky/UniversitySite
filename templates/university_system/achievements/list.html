@@ -1,0 +1,31 @@
+{% extends "university_system/achievements/list_base.html" %}
+{% load custom_filters %}
+{% block list_title %}
+    Achievements
+{% endblock %}
+{% block create_button %}
+    {% if auth_user.token|has_permission:'Scope.achievement, Crud.create' %}
+        <a href="{% url "achievements-create" %}" class="btn btn-outline-info btn-block pb-3 pt-3">
+            <i class="fas fa-plus"></i>
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block header_muted_text %}
+    <a class="btn btn-light"
+       href="{% url "faculties-profile" id=achievement.user_info_id|parent_department_id_by_user %}">
+        <div class="text-muted">{{ achievement.user_info_id|parent_department_title_by_user }}</div>
+    </a>
+    /
+    <a class="btn btn-light" href="{% url "groups-profile" id=achievement.user_info_id|department_id_by_user %}">
+        <div class="text-muted">{{ achievement.user_info_id|department_title_by_user }}</div>
+    </a>
+    /
+    <a class="btn btn-light" href="{% url "students-profile" id=achievement.user_info_id %}">
+        <div class="text-muted">{{ achievement.user_info_id|user_name }} {{ achievement.user_info_id|user_surname }}</div>
+    </a>
+{% endblock %}
+
+ {% block cancel_url %}
+{% url "achievements" %}
+{% endblock %}

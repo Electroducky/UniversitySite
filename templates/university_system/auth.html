@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    {% include 'university_system/include/links.html' %}
+    {% load static %}
+    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" href="{% static 'university_system/auth.css' %}">
+</head>
+<body>
+<div class="container text-center mt-3 w-25">
+<img src="https://img.icons8.com/ios-glyphs/128/000000/university-campus.png">
+    <div class="card border-dark text-center">
+        <div class="card-header">
+            ITMO university
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Please sign in</h3>
+            <form class="form-signin" action={% url "login" %} method="post">
+                {% csrf_token %}
+
+                {% crispy form %}
+
+                {% if check %}
+                    <p>{{ check }}</p>
+                {% endif %}
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-dark">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "university_system/departments/profile_base.html" %}
+{% load custom_filters %}
+{% block about_button %}
+    <a href="{% url "groups-achievements" id=department_info.doc_id %}"
+       class="btn btn-outline-dark">
+        <i class="fas fa-star"></i>&nbsp; Achievement
+    </a>
+{% endblock %}
+
+{% block cancel_url %}
+    {% url "groups-profile" id=department_info.doc_id %}
+{% endblock %}
+
+{% block about_text %}
+    {% if department_info.description is not None %} <p>{{ deparment.description }}</p>{% endif %}
+    <p>Number of students: {{ department.users_info_id|length }}</p>
+         <p>Faculty: {{ department.doc_id|parent_department_title }}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "university_system/departments/profile_base.html" %}
+
+
+{% block about_button %}
+    <a href="{% url "faculties-achievements" id=department_info.doc_id %}"
+       class="btn btn-outline-dark">
+        <i class="fas fa-star"></i>&nbsp; Achievement
+    </a>
+{% endblock %}
+
+{% block cancel_url %}
+{% url "faculties-profile" id=department_info.doc_id %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "university_system/form_base.html" %}
+
+{% block title %}
+Head update
+{% endblock %}
+
+{% block form_title %}
+Head update
+{% endblock %}
+
+{% block form_url %}
+ {% url "head-update" id=id%}
+{% endblock %}

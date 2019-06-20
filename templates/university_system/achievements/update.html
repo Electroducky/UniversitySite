@@ -1,0 +1,13 @@
+{% extends "university_system/form_base.html" %}
+
+{% block title %}
+Achievement update
+{% endblock %}
+
+{% block form_title %}
+Achievement update
+{% endblock %}
+
+{% block form_url %}
+ {% url "achievements-update" id=id%}
+{% endblock %}

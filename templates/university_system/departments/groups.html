@@ -1,0 +1,49 @@
+{% extends 'university_system/departments/list_base.html' %}
+{% load custom_filters %}
+{% block title %}
+    Groups
+{% endblock %}
+
+{% block cards_title %}
+    Groups
+{% endblock %}
+
+{% block card_title %}
+    {{ department_info.title }}
+{% endblock %}
+
+{% block card_text %}
+    Number of students: {{ department.users_info_id|length }}
+{% endblock %}
+
+{% block delete_header_text %}
+    Removal of group
+{% endblock %}
+
+{% block delete_body_text %}
+    group?
+    <p>All of its students will be unbound!</p>
+{% endblock %}
+
+{% block cancel_url %}
+    {% url "groups" %}
+{% endblock %}
+
+{% block students_url %}
+    {% url "groups-students" id=department_info.doc_id %}
+{% endblock %}
+
+{% block card_footer %}
+    <div class="card-footer text-muted">Date of creation: {{ department_info.date }}</div>
+{% endblock %}
+
+{% block card_buttons %}
+     {% if auth_user.token|has_permission:'Scope.department, Crud.read' %}
+        <a href="{% url 'groups-profile' id=department_info.doc_id %}"
+           class="btn btn-outline-dark">View </a>
+    {% endif %}
+    {% if auth_user.token|has_permission:'Scope.department, Crud.read' %}
+        <a href="{% url 'groups-achievements' id=department_info.doc_id %}"
+           class="btn btn-outline-dark">Achievements </a>
+    {% endif %}
+{% endblock %}

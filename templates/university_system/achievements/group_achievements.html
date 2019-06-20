@@ -1,0 +1,22 @@
+{% extends "university_system/achievements/list_base.html" %}
+{% load custom_filters %}
+{% block list_title %}
+   Achievements of the group {{ department_info.title}}
+{% endblock %}
+
+{% block user_profile_button %}
+    <a href="{% url "students-profile" id=achievement.user_info_id %}"
+       class="btn btn-light float-right">
+        <i class="fas fa-user-alt"></i>
+    </a>
+{% endblock %}
+
+{% block header_muted_text %}
+    <a class="btn btn-light" href="#">
+        <div class="text-muted"></div>
+    </a>
+{% endblock %}
+
+ {% block cancel_url %}
+{% url "groups-achievements" id=department_info.doc_id%}
+{% endblock %}

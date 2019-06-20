@@ -1,0 +1,51 @@
+{% extends 'university_system/departments/list_base.html' %}
+{% load custom_filters %}
+{% block title %}
+    Faculties
+{% endblock %}
+
+{% block cards_title %}
+    Faculties
+{% endblock %}
+
+{% block card_title %}
+    {{ department_info.title }}
+{% endblock %}
+
+{% block card_text %}
+    {{ department_info.description }}
+{% endblock %}
+
+{% block delete_header_text %}
+    Removal of faculty
+{% endblock %}
+
+{% block delete_body_text %}
+    faculty?
+    <p>All of its groups will be deleted!</p>
+{% endblock %}
+
+{% block cancel_url %}
+    {% url "faculties" %}
+{% endblock %}
+
+{% block students_url %}
+    {% url "faculties-students" id=department_info.doc_id %}
+{% endblock %}
+
+{% block card_footer %}
+    <div class="card-footer text-muted">Date of creation: {{ department_info.date }}</div>
+{% endblock %}
+
+{% block card_buttons %}
+    {% if auth_user.token|has_permission:'Scope.department, Crud.read' %}
+        <a href="{% url 'faculties-profile' id=department_info.doc_id %}"
+           class="btn btn-outline-dark">View </a>
+        <a href="{% url 'faculties-groups' id=department_info.doc_id %}"
+           class="btn btn-outline-dark">Groups </a>
+    {% endif %}
+    {% if auth_user.token|has_permission:'Scope.achievement, Crud.read' %}
+        <a href="{% url 'faculties-achievements' id=department_info.doc_id %}"
+           class="btn btn-outline-dark">Achievements </a>
+    {% endif %}
+{% endblock %}

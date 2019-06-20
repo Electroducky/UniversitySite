@@ -1,0 +1,121 @@
+{% extends 'university_system/profile_base.html' %}
+
+{% load custom_filters %}
+{% block card_name %}
+    {% if auth_user.doc_id == user.doc_id %} My profile
+    {% else %}
+        {{ user_info.surname }} {{ user_info.name }}
+    {% endif %}
+{% endblock %}
+
+{% block about_title %}
+    {{ user.type }}
+{% endblock %}
+
+{% block card_image %}
+    <img src="https://img.icons8.com/ios-glyphs/128/000000/student-male.png">
+{% endblock %}
+
+{% block about_text %}
+    {{ user_info.description }}
+{% endblock %}
+
+{% block about_button %}
+    {% if user_info.achievements_id is not None and user_info.doc_id == auth_user.info_id %}
+        <a href="{% url "profile-achievements" %}"
+           class="btn btn-outline-dark">
+            <i class="fas fa-star"></i>&nbsp; Achievement
+        </a>
+
+    {% else %}
+        <a href="{% url "students-achievements" id=user_info.doc_id %}"
+           class="btn btn-outline-dark">
+            <i class="fas fa-star"></i>&nbsp; Achievement
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block info_table %}
+    <tr>
+        <th scope="row">Full name</th>
+        <td>{{ user_info.surname }} {{ user_info.name }}
+            {% if user_info.patronomyc is not None %}
+                {{ user_info.patronomyc }}{% endif %}</td>
+    </tr>
+    <tr>
+        <th scope="row">Sex</th>
+        <td>{{ user_info.sex }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Birthday</th>
+        <td colspan="2">{{ user_info.date }}</td>
+    </tr>
+    {% if user_info.department_id is not None %}
+        <tr>
+            <th scope="row">Faculty</th>
+            <td colspan="2">{{ user_info.department_id|parent_department_title }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Group</th>
+            <td colspan="2">{{ user_info.department_id|department_title }}</td>
+        </tr>
+    {% endif %}
+{% endblock %}
+
+{% block about_muted_text %}
+    @{{ user.login }}
+{% endblock %}
+
+{% block info_button %}
+    {% if auth_user.doc_id == user.doc_id %}
+        {% if auth_user.token|has_permission:'Scope.self, Crud.update' %}
+            <a href="{% url 'profile-update' %}"
+               class="btn btn-outline-dark">
+                <i class="fas fa-cog"></i>&nbsp; Settings</a>
+        {% endif %}
+    {% else %}
+        {% if auth_user.token|has_permission:'Scope.student, Crud.update' %}
+            <a href="{% url 'students-update' id=user_info.doc_id %}"
+               class="btn btn-outline-dark">
+                <i class="fas fa-pen"></i>&nbsp; Edit</a>
+        {% endif %}
+        {% if auth_user.token|has_permission:'Scope.student, Crud.delete' %}
+            <button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                <i class="fas fa-trash"></i>&nbsp; Delete
+            </button>
+
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header ">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                Removal of the head</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this user?
+                        </div>
+                        <form action="{% url "users-delete" id=user_info.doc_id %}"
+                              method="post">
+                            {% csrf_token %}
+                            <div class="modal-footer">
+                                <a class="btn btn-secondary"
+                                   href="{% url "students-profile" id=user_info.doc_id %}"
+                                   role="button">Cancel</a>
+
+                                <button type="submit" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

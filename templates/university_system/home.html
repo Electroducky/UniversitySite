@@ -1,0 +1,15 @@
+{% extends 'university_system/menu.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="row justify-content-center align-items-center h-75">
+        <div class="container ">
+                <h1 class="text-center">Welcome to the {{ department_info.title }} University!</h1>
+            {% if text is not None %}<h3 class="text-center mt-3 mb-3">{{ text }}</h3>{% endif %}
+            <div class="text-center">
+                <img src="https://img.icons8.com/ios-glyphs/256/000000/university-campus.png">
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'university_system/profile_base.html' %}
+
+{% load custom_filters %}
+{% block card_name %}
+    Achievement of {{ user_info.name }} {{ user_info.surname }}
+{% endblock %}
+
+{% block about_title %}
+    {{ achievement.title }}
+{% endblock %}
+
+{% block card_image %}
+    <img src="https://img.icons8.com/ios-glyphs/128/000000/trophy.png">
+{% endblock %}
+
+{% block about_text %}
+    {{ achievement.description }}
+{% endblock %}
+
+{% block info_table %}
+    <tr>
+        <th scope="row">Category</th>
+        <td>{{ achievement.category }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Title</th>
+        <td>{{ achievement.title }}
+        </td>
+    </tr>
+    {% if department_info.head is not None %}
+        <tr>
+            <th scope="row">Student</th>
+            <td>{{ user_info.surname }} {{ user_info.name }}
+                {% if user_info.patronymic is not None %} {{ user_info.patronymic }}{% endif %}</td>
+        </tr>
+    {% endif %}
+    <tr>
+        <th scope="row">Date</th>
+        <td colspan="2">{{ achievement.date }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Faculty</th>
+        <td colspan="2">{{ user_info.department_id|parent_department_title }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Group</th>
+        <td colspan="2">{{ user_info.department_id|department_title }}</td>
+    </tr>
+{% endblock %}
+
+{% block info_button %}
+    <div class="text-center">
+        {% if auth_user.token|has_permission:'Scope.achievement, Crud.update' %}
+            <a href="{% url "achievements-update" id=achievement.doc_id %}"
+               class="btn btn-outline-dark">
+                <i class="fas fa-pen"></i>&nbsp; Edit</a>
+        {% endif %}
+        {% if auth_user.token|has_permission:'Scope.achievement, Crud.delete' %}
+            <button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                <i class="fas fa-trash"></i>&nbsp; Delete
+            </button>
+
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Removal of
+                                student</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this achievement?
+                        </div>
+                        <form class=""
+                              action="{% url "achievements-delete" id=achievement.doc_id %}"
+                              method="post">
+                            {% csrf_token %}
+                            <div class="modal-footer">
+                                <a class="btn btn-secondary" href=""
+                                   role="button">Cancel</a>
+
+                                <button type="submit" class="btn btn-primary">
+                                    Delete
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

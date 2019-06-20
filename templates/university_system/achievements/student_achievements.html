@@ -1,0 +1,12 @@
+{% extends "university_system/achievements/list_base.html" %}
+{% load custom_filters %}
+{% block list_title %}
+    Achievements of &nbsp; <a href="{% url "students-profile" id=user_info.doc_id %}"
+                              class="text-info" style="text-decoration: none">
+    <h1>{{ user_info.name }} {{ user_info.surname }}</h1>
+</a>
+{% endblock %}
+
+{% block cancel_url %}
+{% url "students-achievements" id=user_info.doc_id%}
+{% endblock %}

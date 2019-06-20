@@ -1,0 +1,247 @@
+{
+  "users": {
+    "2": {
+      "login": "realdekinci",
+      "password": "959a45d44e6fcf58361ed004681556fe50129f2109e817dec098c00c9e5d2578",
+      "role": "Role.admin",
+      "type": "Type.admin",
+      "info_id": 2
+    },
+    "3": {
+      "login": "electroducky",
+      "password": "d65c3e892354b17a4c032593974d46bc8732c6c0b1ce56edf0c95511d1749cf5",
+      "role": "Role.admin",
+      "type": "Type.admin",
+      "info_id": 3
+    },
+    "15": {
+      "login": "perl",
+      "password": "cdf69b25a417e25753dc086819d2cdfd3939f7d0e175136812e936284bebb4a4",
+      "role": "Role.student",
+      "type": "Type.student",
+      "info_id": 15
+    },
+    "21": {
+      "login": "sasha",
+      "password": "4cf6829aa93728e8f3c97df913fb1bfa95fe5810e2933a05943f8312a98d9cf2",
+      "role": "Role.student",
+      "type": "Type.student",
+      "info_id": 21
+    },
+    "22": {
+      "login": "panda",
+      "password": "9513229d435978263d82902c59d4e0fb86c941a9bf09b605cd8a6643f40149a8",
+      "role": "Role.student",
+      "type": "Type.student",
+      "info_id": 22
+    },
+    "24": {
+      "login": "dekinci",
+      "password": "959a45d44e6fcf58361ed004681556fe50129f2109e817dec098c00c9e5d2578",
+      "role": "Role.student",
+      "type": "Type.student",
+      "info_id": 24
+    },
+    "27": {
+      "login": "dasha",
+      "password": "aa58b21b01d6b8a99c1a5856962dbac36c758a79dc0a77c2e013ce2c39ecdc8a",
+      "role": "Role.student",
+      "type": "Type.student",
+      "info_id": 27
+    }
+  },
+  "users_info": {
+    "2": {
+      "sex": "Sex.male",
+      "name": "\u043d\u0438\u043a\u0438\u0442\u0430",
+      "surname": "\u043d\u043e\u0432\u044b\u0439 \u0442\u0435\u0441\u0442 \u0441 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435\u043c",
+      "patronymic": "\u0442\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439",
+      "date": "10/21/2000",
+      "description": "",
+      "user_id": 2
+    },
+    "3": {
+      "sex": "Sex.female",
+      "name": "Alexandra",
+      "surname": "Cat",
+      "patronymic": "Andreevna",
+      "date": "2019-02-27",
+      "description": "I am creator of this world and this site! Ox-ox-ox. Oh my, my deadlines ((",
+      "user_id": 3
+    },
+    "15": {
+      "sex": "Sex.female",
+      "name": "Olga",
+      "surname": "Perlova",
+      "patronymic": "Andreevna",
+      "date": "2000-10-21",
+      "description": "I love art, jazz and maths!",
+      "user_id": 15,
+      "achievements_id": [
+        3,
+        4
+      ],
+      "department_id": 4
+    },
+    "21": {
+      "sex": "Sex.female",
+      "name": "Alice",
+      "surname": "Cooper",
+      "patronymic": null,
+      "date": "10/21/2000",
+      "description": "Hm, l love Java!",
+      "user_id": 21,
+      "achievements_id": [],
+      "department_id": 4
+    },
+    "22": {
+      "sex": "Sex.female",
+      "name": "Jane",
+      "surname": "Gupta",
+      "patronymic": null,
+      "date": "10/21/2000",
+      "description": null,
+      "user_id": 22,
+      "achievements_id": [],
+      "department_id": 4
+    },
+    "24": {
+      "sex": "Sex.male",
+      "name": "Nikita",
+      "surname": "Tryharder",
+      "patronymic": null,
+      "date": "2000-06-13",
+      "description": "I love back-end, analytics and games!",
+      "user_id": 24,
+      "achievements_id": [],
+      "department_id": 4
+    },
+    "27": {
+      "sex": "Sex.female",
+      "name": "Daria",
+      "surname": "Blue",
+      "patronymic": null,
+      "date": "2019-03-30",
+      "description": "I love back-end, analytics and games!",
+      "user_id": 27,
+      "achievements_id": [],
+      "department_id": 4
+    }
+  },
+  "_default": {},
+  "departments_info": {
+    "1": {
+      "title": "ITMO",
+      "date": "1980-06-02",
+      "description": null,
+      "head": {
+        "name": "aaa",
+        "surname": "aaaa",
+        "patronymic": "test",
+        "date": "2019-04-10"
+      },
+      "department_id": 1
+    },
+    "2": {
+      "title": "Faculty of Programming",
+      "date": "1999-03-04",
+      "description": null,
+      "head": null,
+      "department_id": 2
+    },
+    "8": {
+      "title": "k3122",
+      "date": null,
+      "description": null,
+      "head": null,
+      "department_id": 4
+    },
+    "10": {
+      "title": "Faculty of Physics",
+      "date": "1998-03-04",
+      "description": "ITMO University\u2019s Faculty of Physics grew out of the International Research Center of Nanophotonics and Metamaterials, an institution world-known for its high-profile scientific research.",
+      "head": null,
+      "department_id": 5
+    },
+    "11": {
+      "name": "Teest",
+      "surname": "Test",
+      "patronymic": "Test",
+      "date": null
+    },
+    "12": {
+      "name": "aaa",
+      "surname": "aaaa",
+      "patronymic": "test",
+      "date": "2019-04-10"
+    }
+  },
+  "departments": {
+    "1": {
+      "info_id": 1,
+      "parent_department_id": null,
+      "departments_id": [
+        5
+      ],
+      "users_info_id": [
+        15,
+        21,
+        22,
+        24,
+        27
+      ],
+      "level": "DepartmentLevel.university"
+    },
+    "2": {
+      "info_id": 2,
+      "parent_department_id": 1,
+      "departments_id": [
+        4
+      ],
+      "users_info_id": [
+        15,
+        21,
+        22,
+        24,
+        27
+      ],
+      "level": "DepartmentLevel.chair"
+    },
+    "4": {
+      "info_id": 8,
+      "parent_department_id": 2,
+      "departments_id": [],
+      "users_info_id": [
+        15,
+        21,
+        22,
+        24,
+        27
+      ],
+      "level": "DepartmentLevel.group"
+    },
+    "5": {
+      "info_id": 10,
+      "parent_department_id": 1,
+      "departments_id": [],
+      "users_info_id": [],
+      "level": "DepartmentLevel.chair"
+    }
+  },
+  "achievements": {
+    "3": {
+      "title": "Tennis club",
+      "category": "Category.sport",
+      "date": "2019-03-29",
+      "description": "New club for playing tennis with friends!",
+      "user_info_id": 15
+    },
+    "4": {
+      "title": "Test",
+      "category": "Category.sport",
+      "date": null,
+      "description": null,
+      "user_info_id": 15
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{% extends "university_system/departments/profile_base.html" %}
+
+{% block card_name %}
+    University {{ department_info.title }}
+{% endblock %}
+
+{% block table_element %}
+    <tr>
+        <th scope="row">Number of students</th>
+        <td colspan="2">{{ department.users_info_id|length }}</td>
+    </tr>
+      <tr>
+        <th scope="row">Number of faculties</th>
+        <td colspan="2">{{ department.departments_id|length }}</td>
+    </tr>
+{% endblock %}
+
+
+{% block card_image %}
+    <img src="https://img.icons8.com/ios/128/000000/university-filled.png">
+{% endblock %}
+
+{% block cancel_url %}
+{% url "university-profile"%}
+{% endblock %}
